@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import User from './User';
 import styled from 'styled-components'
-
+import Fade from 'react-reveal/Fade';
 
 const Container = styled.div``;
 
@@ -20,9 +20,12 @@ const Users = () => {
     }
   return (
     <Container>
+      <Fade top distance='10%' duration='1500'>
         {jsonData.map((user)=>(
             <User user={user} key={user.id}/>
         ))}
+      </Fade>
+
     </Container>
   )
 }

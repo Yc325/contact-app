@@ -9,14 +9,14 @@ const Container = styled.div`
     justify-content: center;
 `
 const Midlle = styled.div`
-    padding: 10px, 20px;
+    padding: 10px 20px;
     display: flex;
     align-items: center;
 `
 const Logo = styled.h1`
     padding-left: 10px;
     font-size: 20px;
-    font-weight: 400px;
+    font-weight: 400;
     color: black;
 `
 const Navbar = () => {

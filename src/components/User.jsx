@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import styled from 'styled-components'
 import userProfileIcon from '../img/user-profile-icon.svg';
 import GoogleMap from './GoogleMap';
+import Fade from 'react-reveal/Fade';
 
-console.log(process.env)
+import {mobile} from '../responsive'
 
 const Container = styled.div`
   margin-top: 30px;
@@ -28,18 +29,23 @@ const ProfilePicture = styled.img`
   height: 50px;
   border-radius: 50%;
   margin-right: 16px;
+  ${mobile({
+    width:'30px',
+    height:'30px',
+    marginRight:'10px'})}
 `;
 const UserInfo = styled.div`
   display: flex;
   flex-direction: column;
-  padding-bottom: 16px;
+  padding-bottom: 5px;
 `;
-
 
 const Name = styled.h2`
   margin: 0;
   font-size: 24px;
   font-weight: 500;
+  ${mobile({
+    fontSize:'18px'})}
 `;
 
 const Username = styled.p`
@@ -70,6 +76,9 @@ const InfoHeader = styled.h3`
 
 const InfoItem = styled.div`
   margin-bottom: 16px;
+  ${mobile({
+    fontSize:'14px',
+    display:'block'})}
 `;
 
 const InfoLabel = styled.p`
@@ -84,9 +93,15 @@ const InfoValue = styled.p`
 
 
 const UserBottom = styled.div`
-  padding: 10px 30px 20px 10px;
+  padding: 10px 30px 0px 10px;
+  display: flex;
+  ${mobile({
+    fontSize:'14px',
+    display:'block'})}
 `
+const Value = styled.p`
 
+`
 const Label = styled.span`
   font-weight: bold;
   margin-right: 8px;
@@ -100,7 +115,6 @@ const Redirect = styled.a`
     color:#006fee;
   }
 `
-
 const User = ({user}) => {
 
   const [displayInfo, setDisplayInfo] = useState(false);
@@ -123,17 +137,24 @@ const User = ({user}) => {
 
       </UserHeader>
   <UserBottom>
+    <Value>
           <Label >Email:</Label>
           <Redirect href={`mailto:${user.email}`} target="_blank">{user.email}</Redirect>
+    </Value>
+    <Value>
           <Label>Phone:</Label>
           <Redirect href={`tel:${user.phone}`} target="_blank">{user.phone}</Redirect>
+    </Value>
+    <Value>
           <Label>Website:</Label>
           <Redirect href={`http://${user.website}`} target="_blank">{user.website}</Redirect>
+    </Value>
   </UserBottom>
 
 </UserInfo>
 <ShowInfoButton onClick={handleInfoClick} >{displayInfo ? 'Hide Info -' : 'Show Info +'}</ShowInfoButton>
       {displayInfo && (
+    <Fade>
   <InfoBlock> 
       <InfoItem>
         <InfoHeader>Company</InfoHeader>
@@ -164,6 +185,7 @@ const User = ({user}) => {
         </InfoItem>
 
       </InfoBlock>
+      </Fade>
             )}
     </Container>
   )
